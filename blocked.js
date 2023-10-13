@@ -8,10 +8,19 @@ list.replaceChildren = 'TODO: This'
 // Add a timer to the procceed button
 var button = document.getElementById('proceed');
 button.onclick = function() { 
+    let data = browser.storage.session.get('exceptions');
+    browser.tabs.getCurrent().then( (tab) => {
+        if (data == null || data.exceptions === undefined) {
+            browser.storage.session.set({'exceptions': [tab.id]}); //TODO: Make this per tab and per site too
+        } else {
+            data.exceptions.append(tab.id);
+            browser.storage.session.set({'exceptions': data.exceptions}); //TODO: Make this per tab and per site too
+        }
+        }
+    );
     location.replace('https://' + query.site);
-    // TODO: Disable the extension too
-    // also fix potato code
-    // also somehow recover full url instead of hostname
+
+    // TODO: somehow recover full url instead of hostname
 }; 
 
 var seconds = 5;
