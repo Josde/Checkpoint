@@ -8,24 +8,21 @@
     <link href="../assets/tailwind.css" rel="stylesheet"></style>
 </head>
 <body>
-    <nav class="flex items-center justify-between flex-wrap bg-red-500 p-8">
+    <nav class="flex items-center justify-between flex-wrap p-8 bg-red-500">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
-            <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+            <img class="w-8 h-8 mr-4" src="../assets/flag.png" href="https://www.flaticon.com/free-icons/checkpoint" alt="Checkpoint icons created by cah nggunung - Flaticon"></a>
             <span class="font-semibold text-xl tracking-tight">Checkpoint</span>
         </div>
     </nav>
     <div name="main" class="flex flex-col">
-        <h1 class="text-5xl font-bold m-8 drop-shadow-sm">It looks like you are trying to visit <a class="underline" id="website_name">WEBSITE</a> :(</h1>
-        <span class="text-xl m-8 drop-shadow-sm">Here are a few things you may prefer doing instead of this:</span>
-        <span class="m-8 drop-shadow-sm" id="things">
-            <ul>
-                <li>
-                    TODO: this
-                </li>
+        <div name="top" class="flex flex-col">
+            <h1 class="text-5xl font-thin ml-8 mt-4 drop-shadow-sm">It looks like you are trying to visit <a class="underline font-bold" id="website_name">WEBSITE</a> :(</h1>
+            <span class="text-xl font-thin ml-8 mt-4 drop-shadow-sm" id="leading">Here are a few things you may prefer doing instead of this:</span>
+            <ul id="things" class="list-disc ml-8 mt-4 drop-shadow-sm">
             </ul>
-        </span>
-        <div class="flex items-end justify-items-end align-bottom">
-            <button class="self-end place-self-end h-16 w-32 disabled:bg-red-500 enabled:bg-green-500 m-8 rounded-md" id="proceed">Proceed</button>
+        </div>
+        <div name="bottom" class="fixed bottom-8 right-8">
+            <button class="h-24 w-48 disabled:bg-red-500 enabled:bg-green-500 m-4 rounded-md disabled:animate-pulse font-bold text-white" id="proceed">Proceed</button>
         </div>
     </div>
 </body>

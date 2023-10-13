@@ -7,14 +7,19 @@ function normalizeURL(url) {
 
 async function saveOptions(e) {
     e.preventDefault();
-    values = document.getElementById("pages").value.split('\n');
-    values.forEach( (value, index, array) => {
+    _blockedSites = document.getElementById("pages").value.split('\n');
+    _blockedSites.forEach( (value, index, array) => {
         array[index] =  normalizeURL(value).hostname;
     });
-
-    await browser.storage.local.set({blockedSites: values});
+    _leadingText = document.getElementById("leading").value;
+    _reminders = document.getElementById("reminders").value.split('\n');
+    await browser.storage.local.set({leadingText: _leadingText});
     await browser.storage.sync.set({
-        blockedSites: values
+      leadingText: _leadingText
+    });
+    await browser.storage.local.set({reminders: _reminders});
+    await browser.storage.sync.set({
+      reminders: _reminders
     });
   }
   
@@ -33,6 +38,34 @@ async function saveOptions(e) {
     } catch {
 
     }
+
+    try {
+      let res = await browser.storage.local.get('leadingText');
+      document.getElementById("leading").value = res.leadingText
+  } catch {
+
+  }
+  
+  try {
+      res = await browser.storage.sync.get('leadingText');
+      document.getElementById("leading").value = res.leadingText
+  } catch {
+
+  }
+
+  try {
+    let res = await browser.storage.local.get('reminders');
+    document.getElementById("reminders").value = res.reminders.join('\n');
+} catch {
+
+}
+
+try {
+    res = await browser.storage.sync.get('reminders');
+    document.getElementById("reminders").value = res.reminders.join('\n');
+} catch {
+
+}
     
   }
   
