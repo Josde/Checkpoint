@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body { 
+    background-image: url("bg.jpg");
+    background-color: #222222; /* Used if the image is unavailable */
+    height: 100vh;
+    background-position: left; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+
+}
