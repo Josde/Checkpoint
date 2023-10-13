@@ -1,14 +1,14 @@
+import { getDomain } from  "./helpers.js";
 // Substitute website name to whatever the query parameter is
 var query = URI(document.URL).query(true);
 var website = document.getElementById('website_name');
-website.innerHTML = query.site;
-// Substitute list to whatever we had on options (soonTM)
+website.innerHTML = getDomain(query.site);
+// Substitute leading text and list to whatever we had on options
 browser.storage.sync.get('leadingText').then( (value) => {
     if (value != null && !(value.leadingText === undefined) && value.leadingText) {
         document.getElementById('leading').innerHTML = value.leadingText;
     }
 });
-
 
 var list = document.getElementById('things');
 browser.storage.sync.get('reminders').then( (value) => {
@@ -31,14 +31,14 @@ button.onclick = function() {
     let data = browser.storage.session.get('exceptions');
     browser.tabs.getCurrent().then( (tab) => {
         if (data == null || data.exceptions === undefined) {
-            browser.storage.session.set({'exceptions': [tab.id]}); //TODO: Make this per tab and per site too
+            browser.storage.session.set({'exceptions': [tab.id]}); //TODO: Make this per tab and per site too, rather than just per tab
         } else {
             data.exceptions.append(tab.id);
             browser.storage.session.set({'exceptions': data.exceptions}); //TODO: Make this per tab and per site too
         }
         }
     );
-    location.replace('https://' + query.site);
+    location.replace(query.site);
 
     // TODO: somehow recover full url instead of hostname
 }; 
