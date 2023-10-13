@@ -22,13 +22,19 @@
 
     "options_ui": {
       "page": "options.html",
-      "open_in_tab": false
+      "browser_style": true
     },
   
     "background": {
       "scripts": [
         "background.js"
       ]
+    },
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "checkpoint@josde.me"
+      }
     }
+    
     
   }
