@@ -1,7 +1,11 @@
-VERSION := $(shell cat manifest.json | jq .version)
+VERSION := $(cat manifest.json | jq .version)
 
 
 .PHONY: firefox
+all: 
+	tar.exe -a -c -f "checkpoint.zip" manifest.json README.md LICENSE assets/* src/*
+
+# TODO: Actually start using these makes
 firefox:
 	# ifneq (,$(wildcard checkpoint-firefox-$(VERSION).zip))
 	# 	rm "checkpoint-firefox-${VERSION}.zip"
