@@ -10,7 +10,7 @@ browser.tabs.onUpdated.addListener(function (_id, _info, _tab) {
             browser.storage.session.get({ exceptions: [] }).then((data) => {
             
             if (data.exceptions == null || !data.exceptions.includes(_id)) {
-              browser.tabs.update(_id, { url: `blocked.html?site=${currentSite}` });
+              browser.tabs.update(_id, { url: `src/blocked.html?site=${currentSite}` });
                
             } 
           });
@@ -19,3 +19,12 @@ browser.tabs.onUpdated.addListener(function (_id, _info, _tab) {
   )}
 });
 
+
+
+function handleInstalled(details) {
+  browser.tabs.create({
+    url: "src/options.html",
+  });
+}
+
+browser.runtime.onInstalled.addListener(handleInstalled);

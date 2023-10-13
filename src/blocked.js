@@ -3,8 +3,28 @@ var query = URI(document.URL).query(true);
 var website = document.getElementById('website_name');
 website.innerHTML = query.site;
 // Substitute list to whatever we had on options (soonTM)
+browser.storage.sync.get('leadingText').then( (value) => {
+    if (value != null && !(value.leadingText === undefined) && value.leadingText) {
+        document.getElementById('leading').innerHTML = value.leadingText;
+    }
+});
+
+
 var list = document.getElementById('things');
-list.replaceChildren = 'TODO: This'
+browser.storage.sync.get('reminders').then( (value) => {
+    if (value != null && !(value.reminders === undefined)) {
+        value.reminders.forEach(element => {
+            var anchor = document.createElement("a");
+            anchor.innerHTML = element;
+
+            var elem = document.createElement("li");
+            elem.className = "m-4 font-mono"
+            elem.appendChild(anchor);
+            list.appendChild(elem);
+        });
+    }
+});
+
 // Add a timer to the procceed button
 var button = document.getElementById('proceed');
 button.onclick = function() { 
@@ -23,7 +43,7 @@ button.onclick = function() {
     // TODO: somehow recover full url instead of hostname
 }; 
 
-var seconds = 5;
+var seconds = 10;
 function buttonTimer() {
     if (seconds <= 0) {
         seconds = 0;
