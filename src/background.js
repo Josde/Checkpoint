@@ -9,7 +9,7 @@ browser.tabs.onUpdated.addListener(function (_id, _info, _tab) {
             browser.storage.session.get({ exceptions: [] }).then((data) => {
             
             if (data.exceptions == null || !data.exceptions.includes(_id)) {
-              browser.tabs.update(_id, { url: `blocked.html?site=${currentSite}` }); // FIXME: I could use _tab.url to keep full url for redirection, however for some reason this fucks up on urls with www. in them 
+              browser.tabs.update(_id, { url: `blocked.html?site=${'https://' + currentSite}` }); // FIXME: I could use _tab.url to keep full url for redirection, however for some reason this fucks up on urls with www. in them 
                
             } 
           });
